@@ -14,11 +14,11 @@ exports.create_user = function (req, res) {
     var password2 = req.body.password2;
     if (user.password === password2) {
         user.save();
-        const payload = {name: user.email}
+        const payload = {name: user}
         const options = {expiresIn: '2d', issuer: 'https//example.com'}
         const secret = process.env.JWT_SECRET
         const token = jwt.sign(payload, secret, options)
-        person.token = token;
+        person.APIKey = token;
         person.result = user;
         res.json({
             status: "success",
