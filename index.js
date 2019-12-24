@@ -20,6 +20,13 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.post('/user/create', User.create_user);
 app.post('/user/login', User.login)
 app.post('/todo/create', todo.create_todo)
+app.put('/todo/change/:id', todo.update_todo)
+app.delete('/todo/delete/:id', todo.delete_todo)
+app.put('/todo/item/add/:id', todo.add_items)
+app.post('/todo/item/delete/:id', todo.delete_items)
+app.put('/todo/item/update/:id', todo.update_items)
+app.patch('/todo/state/:id', todo.change_state)
+app.patch('/todo/item/state/:id', todo.items_state)
 
 
 app.listen(PORT, () => {

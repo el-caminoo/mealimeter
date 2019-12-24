@@ -33,13 +33,15 @@ exports.create_user = function (req, res) {
    
 }
 
+
+
 exports.login = function (req, res) {
     result = {}
     const {email, password} = req.body;
     User.findOne({email, password}, 'first_name last_name email', (err, user) => {
-        if (!err && user){
+        if (!err && user){ // if a user matching the email and password is found, a token is assigned
             const payload = {name: user.email}
-            const options = {expiresIn: '2d', issuer: 'https//example.com'}
+            const options = {expiresIn: '1d', issuer: 'https//example.com'}
             const secret = process.env.JWT_SECRET
             const token = jwt.sign(payload, secret, options)
             result.token = token;
