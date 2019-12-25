@@ -16,18 +16,19 @@ mongoose.connect(DB);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+
 // application routes
+app.get('/users', todo.get);
 app.post('/user/create', User.create_user);
 app.post('/user/login', User.login)
-app.post('/todo/create', todo.create_todo)
-app.put('/todo/change/:id', todo.update_todo)
-app.delete('/todo/delete/:id', todo.delete_todo)
-app.put('/todo/item/add/:id', todo.add_items)
-app.post('/todo/item/delete/:id', todo.delete_items)
-app.put('/todo/item/update/:id', todo.update_items)
-app.patch('/todo/state/:id', todo.change_state)
-app.patch('/todo/item/state/:id', todo.items_state)
-
+app.post('/todo/create', todo.create_todo);
+app.patch('/todo/change', todo.update_todo);
+app.delete('/todo/delete', todo.delete_todo);
+app.put('/todo/item/add', todo.add_items);
+app.put('/:id/item/:iid/update', todo.update_items);
+app.patch('/:id/state', todo.change_state);
+app.patch('/:id/items/:iid/state');
+app.delete('/:id/item/:iid/delete')
 
 app.listen(PORT, () => {
     console.log('successfully connected');

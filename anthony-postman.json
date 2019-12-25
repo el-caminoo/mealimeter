@@ -1,0 +1,326 @@
+{
+	"info": {
+		"_postman_id": "00e878b3-11a3-41d0-947e-d048cd1038ec",
+		"name": "Mealimeter",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "http://127.0.0.1:8000/user/create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "first_name",
+									"value": "chima",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "Ibe",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "chima@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "chima",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/user/create",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"user",
+								"create"
+							]
+						},
+						"description": "API endpoint for creating new users and generating API keys(token) to access protected endpoints"
+					},
+					"response": []
+				},
+				{
+					"name": "http://127.0.0.1:8000/user/login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "chima@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "chima",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/user/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"user",
+								"login"
+							]
+						},
+						"description": "API endpoint for logging in existing users and providing session tokens for subsequent authentication"
+					},
+					"response": []
+				}
+			],
+			"description": "This folder describes the creation and authentication endpoints",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Todo-list",
+			"item": [
+				{
+					"name": "create-todo-list",
+					"item": [
+						{
+							"name": "http://127.0.0.1:8000/todo/create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-access-token",
+										"name": "Content-Type",
+										"value": "",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": ""
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Grocery",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/todo/create",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"todo",
+										"create"
+									]
+								},
+								"description": "This describes a request that is invoked without a login-token assigned. Todo-Lists cannot be created without prior authenticaton of credentials(login)."
+							},
+							"response": []
+						},
+						{
+							"name": "http://127.0.0.1:8000/todo/create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-access-token",
+										"name": "Content-Type",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiNWUwMzgzZDAyYjIzOGMxOWFiZmFlMzM2IiwiaWF0IjoxNTc3Mjg4NjkyLCJleHAiOjE1NzcyOTU4OTIsImlzcyI6Imh0dHBzLy9leGFtcGxlLmNvbSJ9.ABOUaSaAuiZqLnQ8lozh7jFFoVVdpMe3iI-puL6XDD4",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiNWUwMzgzZDAyYjIzOGMxOWFiZmFlMzM2IiwiaWF0IjoxNTc3Mjg4NjkyLCJleHAiOjE1NzcyOTU4OTIsImlzcyI6Imh0dHBzLy9leGFtcGxlLmNvbSJ9.ABOUaSaAuiZqLnQ8lozh7jFFoVVdpMe3iI-puL6XDD4"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Grocery",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/todo/create",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"todo",
+										"create"
+									]
+								},
+								"description": "This describes a successful creation of a todo-list. The token assigned to a user upon login is passed in the header section, hence the user has been authenticated and has access to this protected endpoint."
+							},
+							"response": []
+						}
+					],
+					"description": "The following describes the creation of todo_list objects in details",
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Update todo-list",
+					"item": [
+						{
+							"name": "http://127.0.0.1:8000/todo/change?id=5e03682954b56707a0220543",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "x-access-token",
+										"name": "Content-Type",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiNWUwMzRkMTNlNmE4ZTI2YzYyMzU3YzQ1IiwiaWF0IjoxNTc3Mjc5MDc0LCJleHAiOjE1NzcyODYyNzQsImlzcyI6Imh0dHBzLy9leGFtcGxlLmNvbSJ9.6xuVMBrta9263x-l1-YKtT7K4POrMjY9tUEVly9VpsA",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiNWUwMzRkMTNlNmE4ZTI2YzYyMzU3YzQ1IiwiaWF0IjoxNTc3Mjc5MDc0LCJleHAiOjE1NzcyODYyNzQsImlzcyI6Imh0dHBzLy9leGFtcGxlLmNvbSJ9.6xuVMBrta9263x-l1-YKtT7K4POrMjY9tUEVly9VpsA"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "mosque",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/todo/change?id=5e03682954b56707a0220543",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"todo",
+										"change"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "5e03682954b56707a0220543"
+										}
+									]
+								},
+								"description": "This endpoint allows authenticated users change the name of their todo-list. A token assigned after login is passed in the header secion, an ID parameter and and body request is sent with the name to be changed to."
+							},
+							"response": []
+						}
+					],
+					"description": "This folder contains endpoints that carry out PUT/PATCH operations on a todo-list object",
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "delete todo-list",
+					"item": [
+						{
+							"name": "http://127.0.0.1:8000/todo/delete?id=5e0384712b238c19abfae337",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "x-access-token",
+										"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiNWUwMzgzZDAyYjIzOGMxOWFiZmFlMzM2IiwiaWF0IjoxNTc3Mjg4NjkyLCJleHAiOjE1NzcyOTU4OTIsImlzcyI6Imh0dHBzLy9leGFtcGxlLmNvbSJ9.ABOUaSaAuiZqLnQ8lozh7jFFoVVdpMe3iI-puL6XDD4",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://127.0.0.1:8000/todo/delete?id=5e0384712b238c19abfae337",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"todo",
+										"delete"
+									],
+									"query": [
+										{
+											"key": "id",
+											"value": "5e0384712b238c19abfae337"
+										}
+									]
+								},
+								"description": "This endpoint deletes a todo-list object based on the ID parameter. Only authenticated users can have access to this endpoint, hence a login token is required"
+							},
+							"response": []
+						}
+					],
+					"description": "This endpoint lets authenticated users delete already created users",
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -1,54 +1,53 @@
 const User = require('../models/user');
 require('dotenv').config;
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+
 
 exports.create_user = function (req, res) {
     let person = {}
+    var hashedPassword = bcrypt.hashSync(req.body.password, 8);
     let user = new User({
         first_name: req.body.first_name,
         last_name: req.body.last_name,
         email: req.body.email,
-        password: req.body.password,
+        password: hashedPassword
     });
-    // only the password is checked because no two emails can be the same
-    var password2 = req.body.password2;
-    if (user.password === password2) {
-        user.save();
-        const payload = {name: user}
-        const options = {expiresIn: '2d', issuer: 'https//example.com'}
-        const secret = process.env.JWT_SECRET
-        const token = jwt.sign(payload, secret, options)
+    user.save((err) => {
+        if (err){res.status(500).json({
+            status: "error creating user",
+            data: err
+        })}
+        const options = {expiresIn: '1d', issuer: 'https//example.com'}
+        const token = jwt.sign({name:user},process.env.JWT_SECRET, options) // token will be valid for 24 hours
         person.APIKey = token;
-        person.result = user;
-        res.json({
-            status: "success",
+        person.result = user
+        res.status(201).json({
+            status: "successfully created user",
             data: person
         })
-    }
-    else {
-        res.json({
-            status: "error"
-        })
-    }
-   
+    });
 }
 
 
 
 exports.login = function (req, res) {
     result = {}
-    const {email, password} = req.body;
-    User.findOne({email, password}, 'first_name last_name email', (err, user) => {
+    const email = req.body.email;
+    User.findOne({email: email}, 'first_name last_name email password', (err, user) => {
         if (!err && user){ // if a user matching the email and password is found, a token is assigned
-            const payload = {name: user.email}
-            const options = {expiresIn: '1d', issuer: 'https//example.com'}
-            const secret = process.env.JWT_SECRET
-            const token = jwt.sign(payload, secret, options)
-            result.token = token;
-            result.result = user;
-            res.status(200).json({
-                status: 'success',
-                data: result
+            bcrypt.compare(req.body.password, user.password, (err, result) =>{
+                if (result == true){
+                    const options = {expiresIn: '2h', issuer: 'https//example.com'}
+                    const token = jwt.sign({name:user._id},process.env.JWT_SECRET, options) // token will be valid for 2 hours
+                    res.status(200).json({
+                    status: "logged in",
+                    first_name: user.first_name,
+                    last_name: user.last_name,
+                    email: user.email,
+                    token: token
+                })}
+                else(res.send("check password"))
             })
         }
         else {
