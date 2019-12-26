@@ -3,20 +3,6 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config;
 
 
-
-
-
-exports.get = (req, res) => {
-    Todo.find({}, (err, doc) => {
-        if (err){res.send('err')}
-        res.send(doc)
-    })
-}
-
-
-
-
-
 exports.create_todo = (req, res) => {
     var token = req.headers['x-access-token'];
     if (!token){res.status(404).json({auth: false, message: 'no token found'})} // A token generated during login is required to access this endpoint
@@ -51,6 +37,7 @@ exports.update_todo = (req, res) => {
     })
 }
 
+
 exports.delete_todo = (req, res) => {
     var token = req.headers['x-access-token']
     if (!token){res.status(404).send('no token found')}
@@ -64,6 +51,9 @@ exports.delete_todo = (req, res) => {
         });
     })
 }
+
+
+
 
 exports.add_items = (req, res) => {
     var token = req.headers['x-access-token']
